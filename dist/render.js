@@ -11,26 +11,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var fs = __importStar(require("fs"));
-var path = __importStar(require("path"));
 var prettier_1 = __importDefault(require("prettier"));
 var react_1 = __importDefault(require("react"));
 var server_1 = __importDefault(require("react-dom/server"));
-/**
- * render
- */
+render();
 function render() {
-    var outputFile = "./output.html";
     var html = server_1["default"].renderToStaticMarkup(react_1["default"].createElement(HelloWorldPage, null));
     var htmlWDoc = "<!DOCTYPE html>" + html;
     var prettyHtml = prettier_1["default"].format(htmlWDoc, { parser: "html" });
-    makeRequiredDir(outputFile);
+    var outputFile = "./output.html";
     fs.writeFileSync(outputFile, prettyHtml);
     console.log("Wrote " + outputFile);
 }
-exports["default"] = render;
-/**
- * HelloWorldPage
- */
 function HelloWorldPage() {
     return (react_1["default"].createElement("html", { lang: "en" },
         react_1["default"].createElement("head", null,
@@ -39,13 +31,3 @@ function HelloWorldPage() {
         react_1["default"].createElement("body", null,
             react_1["default"].createElement("h1", null, "Hello world"))));
 }
-/**
- * makeRequiredDir
- */
-function makeRequiredDir(filepath) {
-    var dir = path.dirname(filepath);
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
-    }
-}
-exports.makeRequiredDir = makeRequiredDir;

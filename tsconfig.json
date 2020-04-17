@@ -3,19 +3,11 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": [
-      "dom",
-      "es2019"
-    ],
+    "lib": ["dom", "es2019"],
     "outDir": "dist",
     "paths": {
-      "*": [
-        "src/*",
-        "src/@types/*"
-      ]
+      "*": ["src/*", "src/@types/*"]
     }
   },
-  "include": [
-    "src/*.tsx"
-  ]
+  "include": ["src/*.tsx"]
 }

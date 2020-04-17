@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "render": "npm run tsc && node bin/render.js",
-    "tsc": "tsc"
+    "render": "tsc && node dist/render.js"
   },
   "dependencies": {
     "@types/node": "^13.11.1",

@@ -1,27 +1,19 @@
 import * as fs from "fs";
-import * as path from "path";
 import prettier from "prettier";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-/**
- * render
- */
+render();
+
 function render() {
-  let outputFile = "./output.html";
   let html = ReactDOMServer.renderToStaticMarkup(<HelloWorldPage />);
   let htmlWDoc = "<!DOCTYPE html>" + html;
   let prettyHtml = prettier.format(htmlWDoc, { parser: "html" });
-  makeRequiredDir(outputFile);
+  let outputFile = "./output.html";
   fs.writeFileSync(outputFile, prettyHtml);
   console.log(`Wrote ${outputFile}`);
 }
 
-export default render;
-
-/**
- * HelloWorldPage
- */
 function HelloWorldPage() {
   return (
     <html lang="en">
@@ -34,14 +26,4 @@ function HelloWorldPage() {
       </body>
     </html>
   );
-}
-
-/**
- * makeRequiredDir
- */
-export function makeRequiredDir(filepath: string) {
-  let dir = path.dirname(filepath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
 }
